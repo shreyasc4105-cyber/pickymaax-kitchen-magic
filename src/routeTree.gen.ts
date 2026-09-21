@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as OrdersRouteImport } from './routes/orders'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as CheckoutCancelledRouteImport } from './routes/checkout.cancelled'
 import { Route as CheckoutSuccessRouteImport } from './routes/checkout.success'
 import { Route as ApiPublicStripeWebhookRouteImport } from './routes/api/public/stripe/webhook'
@@ -29,6 +31,16 @@ const AuthRoute = AuthRouteImport.update({
 const OrdersRoute = OrdersRouteImport.update({
   id: '/orders',
   path: '/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutCancelledRoute = CheckoutCancelledRouteImport.update({
@@ -51,6 +63,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/orders': typeof OrdersRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/checkout/cancelled': typeof CheckoutCancelledRoute
   '/checkout/success': typeof CheckoutSuccessRoute
   '/api/public/stripe/webhook': typeof ApiPublicStripeWebhookRoute
@@ -59,6 +73,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/orders': typeof OrdersRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/checkout/cancelled': typeof CheckoutCancelledRoute
   '/checkout/success': typeof CheckoutSuccessRoute
   '/api/public/stripe/webhook': typeof ApiPublicStripeWebhookRoute
@@ -68,6 +84,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/orders': typeof OrdersRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/checkout/cancelled': typeof CheckoutCancelledRoute
   '/checkout/success': typeof CheckoutSuccessRoute
   '/api/public/stripe/webhook': typeof ApiPublicStripeWebhookRoute
@@ -78,6 +96,8 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/orders'
+    | '/privacy'
+    | '/terms'
     | '/checkout/cancelled'
     | '/checkout/success'
     | '/api/public/stripe/webhook'
@@ -86,6 +106,8 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/orders'
+    | '/privacy'
+    | '/terms'
     | '/checkout/cancelled'
     | '/checkout/success'
     | '/api/public/stripe/webhook'
@@ -94,6 +116,8 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/orders'
+    | '/privacy'
+    | '/terms'
     | '/checkout/cancelled'
     | '/checkout/success'
     | '/api/public/stripe/webhook'
@@ -103,6 +127,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
   OrdersRoute: typeof OrdersRoute
+  PrivacyRoute: typeof PrivacyRoute
+  TermsRoute: typeof TermsRoute
   CheckoutCancelledRoute: typeof CheckoutCancelledRoute
   CheckoutSuccessRoute: typeof CheckoutSuccessRoute
   ApiPublicStripeWebhookRoute: typeof ApiPublicStripeWebhookRoute
@@ -129,6 +155,20 @@ declare module '@tanstack/react-router' {
       path: '/orders'
       fullPath: '/orders'
       preLoaderRoute: typeof OrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkout/cancelled': {
@@ -159,6 +199,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
   OrdersRoute: OrdersRoute,
+  PrivacyRoute: PrivacyRoute,
+  TermsRoute: TermsRoute,
   CheckoutCancelledRoute: CheckoutCancelledRoute,
   CheckoutSuccessRoute: CheckoutSuccessRoute,
   ApiPublicStripeWebhookRoute: ApiPublicStripeWebhookRoute,
